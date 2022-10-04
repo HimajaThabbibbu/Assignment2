@@ -1,0 +1,20 @@
+import React from 'react'
+
+import "./ScoreBoard.css"
+
+export const ScoreBoard = ({ scores, xPlaying,boxid }) => {
+  const { xScore, oScore } = scores;
+
+  return (
+    
+    <div className="scoreboard">
+      
+      <span className="player">Player {xPlaying}</span><br></br>
+      
+      <br></br>
+      <span className={`score x-score ${!xPlaying && "inactive"}`}>X - {xScore}</span>
+      <span className={`score o-score ${xPlaying && "inactive"}`}>O - {oScore}</span>
+    </div>
+  
+  )
+}
