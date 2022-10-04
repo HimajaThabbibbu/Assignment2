@@ -27,7 +27,7 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [player,setplayer] = useState()
   const [clickid,setID]=useState(setBoard.idx);
-  const [won,setwon]=useState();
+  const [won,setwon]=useState("?");
   var current;
   const handleBoxClick = (boxIdx) => {
     // Step 1: Update the board
@@ -77,15 +77,31 @@ const App = () => {
       // Iterate through win conditions and check if either player satisfies them
       if (board[x] && board[x] === board[y] && board[y] === board[z]) {
         setGameOver(true);
-        setwon(board[x])
+        setwon(board[x]);
         return board[x];
       }
     }
+    let flag = 0;
+		for(let i= 0;i<9;i++){
+			if (board[i] === "X"|| board[i] === "O" ){
+				continue;		
+			}
+			else{
+				flag=1;
+				break;
+			}	
+		}
+    if( flag === 0){
+      setwon("Its a Draw!!");
+      setGameOver(true);
+    }
+
   }
 
   const resetBoard = () => {
     setGameOver(false);
     setBoard(Array(9).fill(null));
+    setwon("?");
   }
 
   return (
